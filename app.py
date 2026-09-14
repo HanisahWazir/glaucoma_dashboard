@@ -72,21 +72,69 @@ st.markdown(
        GLOBAL PAGE
        ============================================================ */
 
+    :root {
+        --app-bg: #EFF3F4;
+        --panel-bg: #FFFFFF;
+        --panel-alt: #F5F8F9;
+        --surface-strong: #E4EBED;
+        --text-color: #14202B;
+        --muted-color: #5B6B73;
+        --primary-color: #0B5566;
+        --primary-strong: #10748C;
+        --border-color: #D7DEE1;
+        --positive-bg: #FBEAE6;
+        --positive-text: #7C2A1B;
+        --negative-bg: #E7F3EC;
+        --negative-text: #1E5C3A;
+        --danger-color: #C1442E;
+        --success-color: #2E8B57;
+        --warning-color: #B7791F;
+        --sidebar-start: #0B5566;
+        --sidebar-end: #084553;
+    }
+
+    @media (prefers-color-scheme: light),
+    html[data-theme="light"],
+    body[data-theme="light"],
+    .stApp[data-theme="light"] {
+        :root {
+            --app-bg: #F3F7F8;
+            --panel-bg: #FFFFFF;
+            --panel-alt: #F5FAFB;
+            --surface-strong: #E2EEF1;
+            --text-color: #15323D;
+            --muted-color: #5A717C;
+            --primary-color: #0B6A7A;
+            --primary-strong: #0E8095;
+            --border-color: #BACED5;
+            --positive-bg: #FFF0EA;
+            --positive-text: #8C3A2D;
+            --negative-bg: #ECF8F0;
+            --negative-text: #215F42;
+            --danger-color: #D85E41;
+            --success-color: #2D8A5A;
+            --warning-color: #B97C1B;
+            --sidebar-start: #0B5566;
+            --sidebar-end: #084553;
+        }
+    }
+
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
-        color: var(--text-color, #14202B);
+        background-color: var(--app-bg);
+        color: var(--text-color);
     }
 
     .stApp {
-        background-color: var(--background-color, #EFF3F4);
-        color: var(--text-color, #14202B);
+        background-color: var(--app-bg);
+        color: var(--text-color);
     }
 
     /* Keep normal Streamlit text readable in both themes */
     .stMarkdown, .stMarkdown p, .stMarkdown li,
     .stMarkdown span, .stMarkdown label,
     [data-testid="stText"], [data-testid="stCaptionContainer"] {
-        color: var(--text-color, #14202B);
+        color: var(--text-color);
     }
 
 
@@ -96,9 +144,24 @@ st.markdown(
 
     h1, h2, h3, h4 {
         font-family: 'Manrope', sans-serif;
-        color: var(--primary-color, #0B5566);
+        color: var(--primary-color);
         font-weight: 700;
         letter-spacing: -0.02em;
+    }
+
+    .hero h1,
+    .hero h2,
+    .hero h3,
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
+    section[data-testid="stSidebar"] .stMarkdown h1,
+    section[data-testid="stSidebar"] .stMarkdown h2,
+    section[data-testid="stSidebar"] .stMarkdown h3 {
+        color: white !important;
     }
 
     h2 {
@@ -185,12 +248,12 @@ st.markdown(
 
     div[data-testid="stVerticalBlockBorderWrapper"] {
 
-        background-color: var(--secondary-background-color, white);
+        background-color: var(--panel-bg);
 
         border-radius: 16px !important;
 
         border:
-            1px solid var(--border-color, #D7DEE1) !important;
+            1px solid var(--border-color) !important;
 
         box-shadow:
             0 3px 10px
@@ -212,7 +275,7 @@ st.markdown(
 
         line-height: 1.3;
 
-        color: var(--primary-color, #0B5566);
+        color: var(--primary-color);
 
         margin-bottom: 8px;
     }
@@ -220,7 +283,7 @@ st.markdown(
 
     .card-sub {
 
-        color: var(--text-color, #5B6B73);
+        color: var(--muted-color);
 
         font-size: 0.95rem;
 
@@ -236,7 +299,7 @@ st.markdown(
 
     .stButton > button {
 
-        background-color: var(--primary-color, #0B5566);
+        background-color: var(--primary-color);
 
         color: white;
 
@@ -256,7 +319,7 @@ st.markdown(
 
     .stButton > button:hover {
 
-        background-color: #10748C;
+        background-color: var(--primary-strong);
 
         color: white;
 
@@ -273,8 +336,8 @@ st.markdown(
         background:
             linear-gradient(
                 180deg,
-                #0B5566 0%,
-                #084553 100%
+                var(--sidebar-start) 0%,
+                var(--sidebar-end) 100%
             );
     }
 
@@ -369,33 +432,33 @@ st.markdown(
 
     .result-positive {
 
-        background-color: #FBEAE6;
+        background-color: var(--positive-bg);
 
         border-left:
-            5px solid #C1442E;
+            5px solid var(--danger-color);
 
-        color: #7C2A1B;
+        color: var(--positive-text);
     }
 
 
     .result-warning {
 
-        background-color: #FBEAE6;
+        background-color: var(--positive-bg);
 
-        border-left: 5px solid #C1442E;
+        border-left: 5px solid var(--danger-color);
 
-        color: #7C2A1B;
+        color: var(--positive-text);
     }
 
 
     .result-negative {
 
-        background-color: #E7F3EC;
+        background-color: var(--negative-bg);
 
         border-left:
-            5px solid #2E8B57;
+            5px solid var(--success-color);
 
-        color: #1E5C3A;
+        color: var(--negative-text);
     }
 
 
@@ -493,25 +556,25 @@ st.markdown(
 
     .positive-result {
 
-        color: #C1442E;
+        color: var(--danger-color);
     }
 
 
     .negative-result {
 
-        color: #2E8B57;
+        color: var(--success-color);
     }
 
 
     .probability-result {
 
-        color: var(--primary-color, #0B5566);
+        color: var(--primary-color);
     }
 
 
     .uncertainty-result {
 
-        color: #B7791F;
+        color: var(--warning-color);
     }
 
 
@@ -525,7 +588,7 @@ st.markdown(
 
         height: 5px;
 
-        background-color: #C1442E;
+        background-color: var(--danger-color);
 
         margin-bottom: 18px;
     }
@@ -537,7 +600,7 @@ st.markdown(
 
         height: 5px;
 
-        background-color: #10748C;
+        background-color: var(--primary-strong);
 
         margin-bottom: 18px;
     }
@@ -549,7 +612,7 @@ st.markdown(
 
         height: 5px;
 
-        background-color: #B7791F;
+        background-color: var(--warning-color);
 
         margin-bottom: 18px;
     }
@@ -561,7 +624,7 @@ st.markdown(
 
     div[data-testid="stFileUploaderDropzone"] {
 
-        background-color: var(--secondary-background-color, #F5F8F9);
+        background-color: var(--panel-alt);
 
         border:
             1.5px dashed #9FB8BE;
@@ -580,7 +643,7 @@ st.markdown(
 
         height: 10px;
 
-        background-color: var(--secondary-background-color, #E4EBED);
+        background-color: var(--surface-strong);
 
         border-radius: 999px;
 
@@ -606,7 +669,7 @@ st.markdown(
 
         text-align: center;
 
-        color: var(--text-color, #8A9AA1);
+        color: var(--muted-color);
 
         font-size: 0.82rem;
 
@@ -624,7 +687,7 @@ st.markdown(
 
         font-size: 0.8rem;
 
-        color: var(--text-color, #5B6B73);
+        color: var(--muted-color);
 
         line-height: 1.4;
 
@@ -633,9 +696,9 @@ st.markdown(
 
     .plain-banner {
 
-        background-color: var(--secondary-background-color, #F5F8F9);
+        background-color: var(--panel-alt);
 
-        border: 1px solid var(--border-color, #D7DEE1);
+        border: 1px solid var(--border-color);
 
         border-radius: 10px;
 
@@ -643,7 +706,7 @@ st.markdown(
 
         font-size: 0.92rem;
 
-        color: var(--text-color, #14202B);
+        color: var(--text-color);
 
         margin-top: 10px;
 
@@ -656,7 +719,7 @@ st.markdown(
 
         font-weight: 700;
 
-        color: var(--primary-color, #0B5566);
+        color: var(--primary-color);
     }
 
     .glossary-item {
@@ -672,93 +735,6 @@ st.markdown(
     }
 
     
-    /* ============================================================
-       DARK-MODE OVERRIDES
-       ============================================================
-       Two selectors are used together on purpose:
-       - @media (prefers-color-scheme: dark) catches the case where
-         Streamlit's theme is set to "Use system setting"
-       - [data-theme="dark"] catches the case where the user has
-         manually picked "Dark" in Streamlit's own theme menu,
-         regardless of what their OS/browser preference is
-       Using only one of these left some combinations unreadable,
-       so both are defined identically here.
-       ============================================================ */
-
-    @media (prefers-color-scheme: dark) {
-        .result-positive { background-color: #4A211B; color: #FFD7D0; }
-        .result-warning { background-color: #4A211B; color: #FFD7D0; }
-        .result-negative { background-color: #173A29; color: #C9F0D8; }
-        .plain-banner { background-color: #202B30; border-color: #3A474D; color: #E8EEF0; }
-        div[data-testid="stFileUploaderDropzone"] { background-color: #202B30; border-color: #6B858D; }
-        .footer-note { color: #A9B8BE; }
-        section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #C7D9DE !important; }
-        .glossary-term { color: #67C6D8; }
-        .card-title, .result-card-title, h1, h2, h3, h4 { color: #67C6D8; }
-        .card-sub, .result-card-plain { color: #C1CDD1; }
-        div[data-testid="stVerticalBlockBorderWrapper"] { background-color: #1B262C; border-color: #3A474D !important; }
-        .card-sub, .result-card-plain, .stMarkdown, .stMarkdown p, .stMarkdown li,
-        .stMarkdown span, .stMarkdown label { color: #E8EEF0; }
-    }
-
-    [data-theme="dark"] .result-positive,
-    .stApp[data-theme="dark"] .result-positive { background-color: #4A211B; color: #FFD7D0; }
-
-    [data-theme="dark"] .result-warning,
-    .stApp[data-theme="dark"] .result-warning { background-color: #4A211B; color: #FFD7D0; }
-
-    [data-theme="dark"] .result-negative,
-    .stApp[data-theme="dark"] .result-negative { background-color: #173A29; color: #C9F0D8; }
-
-    [data-theme="dark"] .plain-banner,
-    .stApp[data-theme="dark"] .plain-banner { background-color: #202B30; border-color: #3A474D; color: #E8EEF0; }
-
-    [data-theme="dark"] div[data-testid="stFileUploaderDropzone"],
-    .stApp[data-theme="dark"] div[data-testid="stFileUploaderDropzone"] { background-color: #202B30; border-color: #6B858D; }
-
-    [data-theme="dark"] .footer-note,
-    .stApp[data-theme="dark"] .footer-note { color: #A9B8BE; }
-
-    [data-theme="dark"] section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
-    .stApp[data-theme="dark"] section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #C7D9DE !important; }
-
-    [data-theme="dark"] .glossary-term,
-    .stApp[data-theme="dark"] .glossary-term { color: #67C6D8; }
-
-    [data-theme="dark"] .card-title,
-    [data-theme="dark"] .result-card-title,
-    [data-theme="dark"] h1,
-    [data-theme="dark"] h2,
-    [data-theme="dark"] h3,
-    [data-theme="dark"] h4,
-    .stApp[data-theme="dark"] .card-title,
-    .stApp[data-theme="dark"] .result-card-title,
-    .stApp[data-theme="dark"] h1,
-    .stApp[data-theme="dark"] h2,
-    .stApp[data-theme="dark"] h3,
-    .stApp[data-theme="dark"] h4 { color: #67C6D8; }
-
-    [data-theme="dark"] .card-sub,
-    [data-theme="dark"] .result-card-plain,
-    [data-theme="dark"] .stMarkdown,
-    [data-theme="dark"] .stMarkdown p,
-    [data-theme="dark"] .stMarkdown li,
-    [data-theme="dark"] .stMarkdown span,
-    [data-theme="dark"] .stMarkdown label,
-    .stApp[data-theme="dark"] .card-sub,
-    .stApp[data-theme="dark"] .result-card-plain,
-    .stApp[data-theme="dark"] .stMarkdown,
-    .stApp[data-theme="dark"] .stMarkdown p,
-    .stApp[data-theme="dark"] .stMarkdown li,
-    .stApp[data-theme="dark"] .stMarkdown span,
-    .stApp[data-theme="dark"] .stMarkdown label { color: #E8EEF0; }
-
-    [data-theme="dark"] div[data-testid="stVerticalBlockBorderWrapper"],
-    .stApp[data-theme="dark"] div[data-testid="stVerticalBlockBorderWrapper"] {
-        background-color: #1B262C;
-        border-color: #3A474D !important;
-    }
-
 </style>
     """,
     unsafe_allow_html=True,
