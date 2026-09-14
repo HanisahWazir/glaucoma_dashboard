@@ -74,11 +74,19 @@ st.markdown(
 
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
-        color: #14202B;
+        color: var(--text-color, #14202B);
     }
 
     .stApp {
-        background-color: #EFF3F4;
+        background-color: var(--background-color, #EFF3F4);
+        color: var(--text-color, #14202B);
+    }
+
+    /* Keep normal Streamlit text readable in both themes */
+    .stMarkdown, .stMarkdown p, .stMarkdown li,
+    .stMarkdown span, .stMarkdown label,
+    [data-testid="stText"], [data-testid="stCaptionContainer"] {
+        color: var(--text-color, #14202B);
     }
 
 
@@ -88,7 +96,7 @@ st.markdown(
 
     h1, h2, h3, h4 {
         font-family: 'Manrope', sans-serif;
-        color: #0B5566;
+        color: var(--primary-color, #0B5566);
         font-weight: 700;
         letter-spacing: -0.02em;
     }
@@ -177,12 +185,12 @@ st.markdown(
 
     div[data-testid="stVerticalBlockBorderWrapper"] {
 
-        background-color: white;
+        background-color: var(--secondary-background-color, white);
 
         border-radius: 16px !important;
 
         border:
-            1px solid #D7DEE1 !important;
+            1px solid var(--border-color, #D7DEE1) !important;
 
         box-shadow:
             0 3px 10px
@@ -204,7 +212,7 @@ st.markdown(
 
         line-height: 1.3;
 
-        color: #0B5566;
+        color: var(--primary-color, #0B5566);
 
         margin-bottom: 8px;
     }
@@ -212,7 +220,7 @@ st.markdown(
 
     .card-sub {
 
-        color: #5B6B73;
+        color: var(--text-color, #5B6B73);
 
         font-size: 0.95rem;
 
@@ -228,7 +236,7 @@ st.markdown(
 
     .stButton > button {
 
-        background-color: #0B5566;
+        background-color: var(--primary-color, #0B5566);
 
         color: white;
 
@@ -435,7 +443,7 @@ st.markdown(
 
         font-weight: 700;
 
-        color: #0B5566;
+        color: var(--primary-color, #0B5566);
 
         text-align: center;
 
@@ -487,7 +495,7 @@ st.markdown(
 
     .probability-result {
 
-        color: #0B5566;
+        color: var(--primary-color, #0B5566);
     }
 
 
@@ -543,7 +551,7 @@ st.markdown(
 
     div[data-testid="stFileUploaderDropzone"] {
 
-        background-color: #F5F8F9;
+        background-color: var(--secondary-background-color, #F5F8F9);
 
         border:
             1.5px dashed #9FB8BE;
@@ -562,7 +570,7 @@ st.markdown(
 
         height: 10px;
 
-        background-color: #E4EBED;
+        background-color: var(--secondary-background-color, #E4EBED);
 
         border-radius: 999px;
 
@@ -588,7 +596,7 @@ st.markdown(
 
         text-align: center;
 
-        color: #8A9AA1;
+        color: var(--text-color, #8A9AA1);
 
         font-size: 0.82rem;
 
@@ -606,7 +614,7 @@ st.markdown(
 
         font-size: 0.8rem;
 
-        color: #5B6B73;
+        color: var(--text-color, #5B6B73);
 
         line-height: 1.4;
 
@@ -615,9 +623,9 @@ st.markdown(
 
     .plain-banner {
 
-        background-color: #F5F8F9;
+        background-color: var(--secondary-background-color, #F5F8F9);
 
-        border: 1px solid #D7DEE1;
+        border: 1px solid var(--border-color, #D7DEE1);
 
         border-radius: 10px;
 
@@ -625,7 +633,7 @@ st.markdown(
 
         font-size: 0.92rem;
 
-        color: #14202B;
+        color: var(--text-color, #14202B);
 
         margin-top: 10px;
 
@@ -638,7 +646,7 @@ st.markdown(
 
         font-weight: 700;
 
-        color: #0B5566;
+        color: var(--primary-color, #0B5566);
     }
 
     .glossary-item {
@@ -653,7 +661,24 @@ st.markdown(
         margin-bottom: 0;
     }
 
-    </style>
+    
+    /* ============================================================
+       DARK-MODE OVERRIDES
+       ============================================================ */
+
+    @media (prefers-color-scheme: dark) {
+        .result-positive { background-color: #4A211B; color: #FFD7D0; }
+        .result-negative { background-color: #173A29; color: #C9F0D8; }
+        .plain-banner { background-color: #202B30; border-color: #3A474D; color: #E8EEF0; }
+        div[data-testid="stFileUploaderDropzone"] { background-color: #202B30; border-color: #6B858D; }
+        .footer-note { color: #A9B8BE; }
+        section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #C7D9DE !important; }
+        .glossary-term { color: #67C6D8; }
+        .card-title, .result-card-title, h1, h2, h3, h4 { color: #67C6D8; }
+        .card-sub, .result-card-plain { color: #C1CDD1; }
+    }
+
+</style>
     """,
     unsafe_allow_html=True,
 )
