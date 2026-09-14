@@ -152,16 +152,27 @@ st.markdown(
     .hero h1,
     .hero h2,
     .hero h3,
+    .hero h1 *,
+    .hero h2 *,
+    .hero h3 *,
     section[data-testid="stSidebar"] h1,
     section[data-testid="stSidebar"] h2,
     section[data-testid="stSidebar"] h3,
+    section[data-testid="stSidebar"] h1 *,
+    section[data-testid="stSidebar"] h2 *,
+    section[data-testid="stSidebar"] h3 *,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1 *,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2 *,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3 *,
+    section[data-testid="stSidebar"] [data-testid="stHeading"],
+    section[data-testid="stSidebar"] [data-testid="stHeading"] *,
     section[data-testid="stSidebar"] .stMarkdown h1,
     section[data-testid="stSidebar"] .stMarkdown h2,
     section[data-testid="stSidebar"] .stMarkdown h3 {
-        color: white !important;
+        color: #FFFFFF !important;
     }
 
     h2 {
@@ -199,7 +210,7 @@ st.markdown(
 
 
     .hero h1 {
-        color: white;
+        color: #FFFFFF !important;
 
         font-size: 2.2rem;
 
@@ -246,18 +257,54 @@ st.markdown(
        GENERAL CARDS
        ============================================================ */
 
-    div[data-testid="stVerticalBlockBorderWrapper"] {
+    div[data-testid="stVerticalBlockBorderWrapper"],
+    div[data-testid="stVerticalBlockBorderWrapper"] > div[data-testid="stVerticalBlock"],
+    div[data-testid="column"] div[data-testid="stVerticalBlockBorderWrapper"],
+    div[data-testid="column"] div[data-testid="stVerticalBlockBorderWrapper"] > div[data-testid="stVerticalBlock"] {
+
+        background-color: var(--panel-bg) !important;
+
+        border-radius: 16px !important;
+
+        border:
+            1px solid #000000 !important;
+
+        box-shadow:
+            0 3px 10px
+            rgba(20, 32, 43, 0.05) !important;
+    }
+
+
+    /* ============================================================
+       EXPANDERS (About this dashboard, Glossary, etc.)
+       — same black outline as the cards, in both themes
+       ============================================================ */
+
+    div[data-testid="stExpander"] {
 
         background-color: var(--panel-bg);
 
         border-radius: 16px !important;
 
-        border:
-            1px solid var(--border-color) !important;
+        border: 1px solid #000000 !important;
 
         box-shadow:
             0 3px 10px
             rgba(20, 32, 43, 0.05);
+
+        overflow: hidden;
+    }
+
+    div[data-testid="stExpander"] summary {
+
+        background-color: var(--panel-bg);
+
+        color: var(--text-color) !important;
+    }
+
+    div[data-testid="stExpander"] details {
+
+        border: none !important;
     }
 
 
