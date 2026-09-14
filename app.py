@@ -378,6 +378,16 @@ st.markdown(
     }
 
 
+    .result-warning {
+
+        background-color: #FBEAE6;
+
+        border-left: 5px solid #C1442E;
+
+        color: #7C2A1B;
+    }
+
+
     .result-negative {
 
         background-color: #E7F3EC;
@@ -664,10 +674,20 @@ st.markdown(
     
     /* ============================================================
        DARK-MODE OVERRIDES
+       ============================================================
+       Two selectors are used together on purpose:
+       - @media (prefers-color-scheme: dark) catches the case where
+         Streamlit's theme is set to "Use system setting"
+       - [data-theme="dark"] catches the case where the user has
+         manually picked "Dark" in Streamlit's own theme menu,
+         regardless of what their OS/browser preference is
+       Using only one of these left some combinations unreadable,
+       so both are defined identically here.
        ============================================================ */
 
     @media (prefers-color-scheme: dark) {
         .result-positive { background-color: #4A211B; color: #FFD7D0; }
+        .result-warning { background-color: #4A211B; color: #FFD7D0; }
         .result-negative { background-color: #173A29; color: #C9F0D8; }
         .plain-banner { background-color: #202B30; border-color: #3A474D; color: #E8EEF0; }
         div[data-testid="stFileUploaderDropzone"] { background-color: #202B30; border-color: #6B858D; }
@@ -676,6 +696,67 @@ st.markdown(
         .glossary-term { color: #67C6D8; }
         .card-title, .result-card-title, h1, h2, h3, h4 { color: #67C6D8; }
         .card-sub, .result-card-plain { color: #C1CDD1; }
+        div[data-testid="stVerticalBlockBorderWrapper"] { background-color: #1B262C; border-color: #3A474D !important; }
+        .card-sub, .result-card-plain, .stMarkdown, .stMarkdown p, .stMarkdown li,
+        .stMarkdown span, .stMarkdown label { color: #E8EEF0; }
+    }
+
+    [data-theme="dark"] .result-positive,
+    .stApp[data-theme="dark"] .result-positive { background-color: #4A211B; color: #FFD7D0; }
+
+    [data-theme="dark"] .result-warning,
+    .stApp[data-theme="dark"] .result-warning { background-color: #4A211B; color: #FFD7D0; }
+
+    [data-theme="dark"] .result-negative,
+    .stApp[data-theme="dark"] .result-negative { background-color: #173A29; color: #C9F0D8; }
+
+    [data-theme="dark"] .plain-banner,
+    .stApp[data-theme="dark"] .plain-banner { background-color: #202B30; border-color: #3A474D; color: #E8EEF0; }
+
+    [data-theme="dark"] div[data-testid="stFileUploaderDropzone"],
+    .stApp[data-theme="dark"] div[data-testid="stFileUploaderDropzone"] { background-color: #202B30; border-color: #6B858D; }
+
+    [data-theme="dark"] .footer-note,
+    .stApp[data-theme="dark"] .footer-note { color: #A9B8BE; }
+
+    [data-theme="dark"] section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
+    .stApp[data-theme="dark"] section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #C7D9DE !important; }
+
+    [data-theme="dark"] .glossary-term,
+    .stApp[data-theme="dark"] .glossary-term { color: #67C6D8; }
+
+    [data-theme="dark"] .card-title,
+    [data-theme="dark"] .result-card-title,
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4,
+    .stApp[data-theme="dark"] .card-title,
+    .stApp[data-theme="dark"] .result-card-title,
+    .stApp[data-theme="dark"] h1,
+    .stApp[data-theme="dark"] h2,
+    .stApp[data-theme="dark"] h3,
+    .stApp[data-theme="dark"] h4 { color: #67C6D8; }
+
+    [data-theme="dark"] .card-sub,
+    [data-theme="dark"] .result-card-plain,
+    [data-theme="dark"] .stMarkdown,
+    [data-theme="dark"] .stMarkdown p,
+    [data-theme="dark"] .stMarkdown li,
+    [data-theme="dark"] .stMarkdown span,
+    [data-theme="dark"] .stMarkdown label,
+    .stApp[data-theme="dark"] .card-sub,
+    .stApp[data-theme="dark"] .result-card-plain,
+    .stApp[data-theme="dark"] .stMarkdown,
+    .stApp[data-theme="dark"] .stMarkdown p,
+    .stApp[data-theme="dark"] .stMarkdown li,
+    .stApp[data-theme="dark"] .stMarkdown span,
+    .stApp[data-theme="dark"] .stMarkdown label { color: #E8EEF0; }
+
+    [data-theme="dark"] div[data-testid="stVerticalBlockBorderWrapper"],
+    .stApp[data-theme="dark"] div[data-testid="stVerticalBlockBorderWrapper"] {
+        background-color: #1B262C;
+        border-color: #3A474D !important;
     }
 
 </style>
@@ -1438,7 +1519,7 @@ if uploaded_file is not None:
 
             st.markdown(
                 """
-                <div class="result-banner" style="background-color: #FBEAE6; border-left: 5px solid #C1442E; color: #7C2A1B;">
+                <div class="result-banner result-warning">
                 ⚠️ <strong>Quality warning:</strong> this image didn't pass
                 basic fundus-photo checks (see the upload panel above).
                 Treat this result with extra caution — it may not reflect
